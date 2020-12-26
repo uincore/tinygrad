@@ -86,6 +86,8 @@ def fake_torch_load(b0):
 
     # numpy stores its strides in bytes
     real_strides = tuple([x*bytes_size for x in np_strides])
-    np_array.strides = real_strides
-
+    if len(real_strides) > 0:
+       np_array.strides = real_strides
+    else:
+       assert len(np_array.strides) == 0
   return ret
